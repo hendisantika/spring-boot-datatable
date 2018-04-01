@@ -199,7 +199,7 @@ public class PaginationCriteria {
         StringBuilder fbsb = null;
 
         if (!isFilterByEmpty()) {
-            Iterator<Entry<String, String>> fbit = filterBy.getMapOfFilters().entrySet().iterator();
+            Iterator<Map.Entry<String, String>> fbit = filterBy.getMapOfFilters().entrySet().iterator();
 
             while (fbit.hasNext()) {
 

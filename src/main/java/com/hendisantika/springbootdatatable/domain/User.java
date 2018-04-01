@@ -1,6 +1,8 @@
 package com.hendisantika.springbootdatatable.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -17,6 +19,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String salary;
@@ -75,4 +78,23 @@ public class User {
 //	public void setTotalRecords(Integer totalRecords) {
 //		this.totalRecords = totalRecords;
 //	}
+
+
+    public User() {
+    }
+
+
+    public User(String name, String salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary='" + salary + '\'' +
+                '}';
+    }
 }

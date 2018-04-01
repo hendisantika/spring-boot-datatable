@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT * FROM USER", nativeQuery = true)
     List<User> findAllByUsernames(List<String> listOfUsernames);
+
+    User findByNameIgnoreCase(String name);
 }

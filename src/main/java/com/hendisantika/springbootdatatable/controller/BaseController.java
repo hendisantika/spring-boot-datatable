@@ -9,6 +9,8 @@ import com.hendisantika.springbootdatatable.pagination.PaginationCriteria;
 import com.hendisantika.springbootdatatable.repository.GenericRepo;
 import com.hendisantika.springbootdatatable.repository.UserRepository;
 import com.hendisantika.springbootdatatable.util.AppUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 /**
@@ -34,6 +37,8 @@ import java.util.List;
  */
 @Controller
 public class BaseController {
+
+    private Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Autowired
     private UserRepository userRepo;
@@ -72,7 +77,7 @@ public class BaseController {
         String baseQuery = "SELECT id as id, name as name, salary as salary, (SELECT COUNT(1) FROM USER) AS total_records  FROM USER";
         String paginatedQuery = AppUtil.buildPaginatedQuery(baseQuery, pagination);
 
-        System.out.println(paginatedQuery);
+        log.info(paginatedQuery);
 
         Query query = entityManager.createNativeQuery(paginatedQuery, UserModel.class);
 
